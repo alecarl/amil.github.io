@@ -1,0 +1,1077 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "LigueSaude"
+    },
+    "host": "localhost:7080",
+    "basePath": "/v1/ligueSaude",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/buscarEnderecos": {
+            "get": {
+                "summary": "Lista de endereços já utilizados pelo usuário",
+                "description": "Retorna uma lista de endereços já utilizados pelo usuário.",
+                "parameters": [
+                    {
+                        "name": "idPessoa",
+                        "in": "query",
+                        "description": "Id do Usuário",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "endereco",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/buscarEstados": {
+            "get": {
+                "summary": "Lista de Estados",
+                "description": "Retorna uma lista dos estados, conforme os parâmetros informados.\n",
+                "parameters": [
+                    {
+                        "name": "idade",
+                        "in": "query",
+                        "description": "Idade",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "convANS",
+                        "in": "query",
+                        "description": "Convênio ANS",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "rede",
+                        "in": "query",
+                        "description": "Código da Rede Credenciada",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sexo",
+                        "in": "query",
+                        "description": "Sexo",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "uf",
+                        "in": "query",
+                        "description": "UF",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "especialidade",
+                        "in": "query",
+                        "description": "Especialidade",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cronico",
+                        "in": "query",
+                        "description": "Crônico",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "listaEspCronicos",
+                        "in": "query",
+                        "description": "listaEspCronicos",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "estados",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Estado"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/buscarOpcaoEntradas": {
+            "get": {
+                "summary": "Lista de Opções de Entrada",
+                "description": "Retorna uma lista de opção de entradas.\n",
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "opcaoEntrada",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/OpcaoEntrada"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/buscarParametro": {
+            "get": {
+                "summary": "Parâmetro",
+                "description": "Retorna o parâmetro para o id do tipo informado.\n",
+                "parameters": [
+                    {
+                        "name": "idTipo",
+                        "in": "query",
+                        "description": "Id do Tipo",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "parametro",
+                            "type": "object",
+                            "$ref": "#/definitions/Parametro"
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/buscarRegioes": {
+            "get": {
+                "summary": "Lista de Regiões",
+                "description": "Retorna uma lista de regiões, conforme os parâmetros informados.\n",
+                "parameters": [
+                    {
+                        "name": "idade",
+                        "in": "query",
+                        "description": "Idade",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "convANS",
+                        "in": "query",
+                        "description": "Convênio ANS",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "rede",
+                        "in": "query",
+                        "description": "Código da Rede Credenciada",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sexo",
+                        "in": "query",
+                        "description": "Sexo",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "uf",
+                        "in": "query",
+                        "description": "UF",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "especialidade",
+                        "in": "query",
+                        "description": "Especialidade",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cronico",
+                        "in": "query",
+                        "description": "Crônico",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "listaEspCronicos",
+                        "in": "query",
+                        "description": "listaEspCronicos",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "exame",
+                        "in": "query",
+                        "description": "exame",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "idRegiao",
+                        "in": "query",
+                        "description": "idRegiao",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "cliente",
+                        "in": "query",
+                        "description": "cliente",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "procedimento",
+                        "in": "query",
+                        "description": "procedimento",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "tipoAtendimento",
+                        "in": "query",
+                        "description": "tipoAtendimento",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "idUsuario",
+                        "in": "query",
+                        "description": "idUsuario",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "regioes",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Regiao"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/buscarTermo": {
+            "get": {
+                "summary": "Termo",
+                "description": "Retorna o termo conforme o parâmetro infomado.\n",
+                "parameters": [
+                    {
+                        "name": "idPessoa",
+                        "in": "query",
+                        "description": "Id da Pessoa",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "termo",
+                            "type": "object",
+                            "$ref": "#/definitions/Termo"
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/buscarOrientacao": {
+            "get": {
+                "summary": "Orientação",
+                "description": "Retorna a orientação conforme o parâmetro infomado.\n",
+                "parameters": [
+                    {
+                        "name": "idOrientacao",
+                        "in": "query",
+                        "description": "Id da Orientação",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "orientacao",
+                            "type": "object",
+                            "$ref": "#/definitions/Orientacao"
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/gravarAceiteTermo": {
+            "post": {
+                "summary": "Grava o aceite do termo",
+                "description": "Grava o aceite do termo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "termo",
+                        "description": "Dados do Termo.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AceiteTermo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "status",
+                            "type": "boolean"
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/gravarEndereco": {
+            "post": {
+                "summary": "Grava o Endereço",
+                "description": "Grava o Endereço",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "endereco",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "status",
+                            "type": "boolean"
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/gravarRespostaProtocolo": {
+            "get": {
+                "description": "Retorna a orientação conforme o parâmetro infomado.\n",
+                "parameters": [
+                    {
+                        "name": "idPessoa",
+                        "in": "query",
+                        "description": "Id da Pessoa",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "termo",
+                            "type": "object",
+                            "$ref": "#/definitions/Termo"
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/buscarSintomas": {
+            "get": {
+                "description": "Retorna a orientação conforme o parâmetro infomado.\n",
+                "parameters": [
+                    {
+                        "name": "idPessoa",
+                        "in": "query",
+                        "description": "Id da Pessoa",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "termo",
+                            "type": "object",
+                            "$ref": "#/definitions/Termo"
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/buscarUnidadesVagaLivre": {
+            "get": {
+                "description": "Retorna uma lista dos estados, conforme os parâmetros informados.\n",
+                "parameters": [
+                    {
+                        "name": "idade",
+                        "in": "query",
+                        "description": "Idade",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sexo",
+                        "in": "query",
+                        "description": "Sexo",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "idCliente",
+                        "in": "query",
+                        "description": "Id do Cliente",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "dtInicial",
+                        "in": "query",
+                        "description": "Data Inicial",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "dtFinal",
+                        "in": "query",
+                        "description": "Data Final",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "listaEspecialidades",
+                        "in": "query",
+                        "description": "Lista de Especialidades",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "listEspCronicos",
+                        "in": "query",
+                        "description": "Lista de Esp. Cronicos",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "convANS",
+                        "in": "query",
+                        "description": "convANS",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "rede",
+                        "in": "query",
+                        "description": "rede",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "programaSaude",
+                        "in": "query",
+                        "description": "Programa Saúde",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "rn259",
+                        "in": "query",
+                        "description": "rn259",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "superId",
+                        "in": "query",
+                        "description": "superId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "tipoAgenda",
+                        "in": "query",
+                        "description": "Lista de Esp. Cronicos",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "idProfissional",
+                        "in": "query",
+                        "description": "idProfissional",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "idUsuario",
+                        "in": "query",
+                        "description": "idUsuario",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "listaIdUnidade",
+                        "in": "query",
+                        "description": "Lista Id Unidade",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "carregarCalendario",
+                        "in": "query",
+                        "description": "carregarCalendario",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "carregarRegua",
+                        "in": "query",
+                        "description": "carregarRegua",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "diasSemana",
+                        "in": "query",
+                        "description": "diasSemana",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "periodo",
+                        "in": "query",
+                        "description": "periodo",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "horaInicio",
+                        "in": "query",
+                        "description": "horaInicio",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "horaFim",
+                        "in": "query",
+                        "description": "horaFim",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "continuar",
+                        "in": "query",
+                        "description": "continuar",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "flagSegPref",
+                        "in": "query",
+                        "description": "flagSegPref",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "idProcedimento",
+                        "in": "query",
+                        "description": "idProcedimento",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "idBeneficiario",
+                        "in": "query",
+                        "description": "idBeneficiario",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "idProtocolo",
+                        "in": "query",
+                        "description": "idProtocolo",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "redeProximidade",
+                        "in": "query",
+                        "description": "redeProximidade",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resposta com Sucesso",
+                        "schema": {
+                            "title": "unidadeVagaLivre",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UnidadeVagaLivre"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor",
+                        "schema": {
+                            "title": "mensagemErro",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Estado": {
+            "properties": {
+                "sigla": {
+                    "type": "string"
+                },
+                "nome": {
+                    "type": "string"
+                }
+            }
+        },
+        "OpcaoEntrada": {
+            "properties": {
+                "nome": {
+                    "type": "string"
+                },
+                "ativo": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Parametro": {
+            "properties": {
+                "nome": {
+                    "type": "string"
+                },
+                "valor": {
+                    "type": "string"
+                }
+            }
+        },
+        "Regiao": {
+            "properties": {
+                "idRegiao": {
+                    "type": "integer"
+                },
+                "nome": {
+                    "type": "string"
+                }
+            }
+        },
+        "Termo": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "texto": {
+                    "type": "string"
+                }
+            }
+        },
+        "Orientacao": {
+            "properties": {
+                "dsOrientacao": {
+                    "type": "string"
+                },
+                "dsTexto": {
+                    "type": "string"
+                }
+            }
+        },
+        "AceiteTermo": {
+            "properties": {
+                "idPessoa": {
+                    "type": "integer"
+                },
+                "idTermo": {
+                    "type": "integer"
+                }
+            }
+        },
+        "NecessidadeCliente": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "descricao": {
+                    "type": "string"
+                }
+            }
+        },
+        "SetorCliente": {
+            "properties": {
+                "idSetor": {
+                    "type": "integer"
+                },
+                "idCliente": {
+                    "type": "integer"
+                },
+                "descricao": {
+                    "type": "string"
+                },
+                "hrInicial": {
+                    "type": "string"
+                },
+                "hrFinal": {
+                    "type": "string"
+                },
+                "observacao": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "descricaoStatus": {
+                    "type": "string"
+                },
+                "mensagemErro": {
+                    "type": "string"
+                }
+            }
+        },
+        "Unidade": {
+            "properties": {
+                "idHCLI": {
+                    "type": "integer"
+                },
+                "idCli": {
+                    "type": "integer"
+                },
+                "razao": {
+                    "type": "string"
+                },
+                "fantasia": {
+                    "type": "string"
+                },
+                "ativo": {
+                    "type": "boolean"
+                },
+                "dtInicioAUD": {
+                    "type": "string"
+                },
+                "dtFinalAUD": {
+                    "type": "string"
+                },
+                "dia": {
+                    "type": "string"
+                },
+                "dtInicio": {
+                    "type": "string"
+                },
+                "hrInicioAgenda": {
+                    "type": "string"
+                },
+                "hrInicio": {
+                    "type": "string"
+                },
+                "dtFinal": {
+                    "type": "string"
+                },
+                "hrFimAgenda": {
+                    "type": "string"
+                },
+                "hrFinal": {
+                    "type": "string"
+                },
+                "diaDescricao": {
+                    "type": "string"
+                },
+                "logradouro": {
+                    "type": "string"
+                },
+                "endereco": {
+                    "type": "string"
+                },
+                "numero": {
+                    "type": "string"
+                },
+                "complemento": {
+                    "type": "string"
+                },
+                "referenciaEndereco": {
+                    "type": "string"
+                },
+                "cep": {
+                    "type": "string"
+                },
+                "bairro": {
+                    "type": "string"
+                },
+                "regiao": {
+                    "type": "string"
+                },
+                "idMunicipio": {
+                    "type": "integer"
+                },
+                "municipio": {
+                    "type": "string"
+                },
+                "uf": {
+                    "type": "string"
+                },
+                "dddTelefone": {
+                    "type": "string"
+                },
+                "telefone": {
+                    "type": "string"
+                },
+                "cnpj": {
+                    "type": "string"
+                },
+                "homePage": {
+                    "type": "string"
+                },
+                "observacao": {
+                    "type": "string"
+                },
+                "atendUrgencia": {
+                    "type": "string"
+                },
+                "fusoDescricao": {
+                    "type": "string"
+                },
+                "encaixe": {
+                    "type": "integer"
+                },
+                "tipoEncaixe": {
+                    "type": "string"
+                },
+                "qtdeDiasEncaixe": {
+                    "type": "integer"
+                },
+                "tipoLiberacaoEncaixe": {
+                    "type": "string"
+                },
+                "qtdeDiasFuturoEncaixe": {
+                    "type": "integer"
+                },
+                "aplicarQuestionario": {
+                    "type": "integer"
+                },
+                "redeCredenciada": {
+                    "type": "integer"
+                },
+                "onLineTempoPadrao": {
+                    "type": "integer"
+                },
+                "necessidadeCliente": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/NecessidadeCliente"
+                    }
+                },
+                "setorCliente": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SetorCliente"
+                    }
+                },
+                "idWPD": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "longitude": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "codUnidadeSISAMIL": {
+                    "type": "string"
+                },
+                "integracaoPAT": {
+                    "type": "integer"
+                },
+                "siglaWorkflow": {
+                    "type": "string"
+                },
+                "processoWorkflow": {
+                    "type": "string"
+                },
+                "idMatriz": {
+                    "type": "integer"
+                }
+            }
+        },
+        "VagaLivre": {
+            "properties": {
+                "idCliente": {
+                    "type": "integer"
+                },
+                "idProfissional": {
+                    "type": "integer"
+                },
+                "idEspecialidade": {
+                    "type": "integer"
+                },
+                "idProcedimento": {
+                    "type": "string"
+                },
+                "idTabProcedimento": {
+                    "type": "integer"
+                },
+                "dtAgenProfissional": {
+                    "type": "string"
+                },
+                "qtdeDisponivel": {
+                    "type": "integer"
+                }
+            }
+        },
+        "UnidadeVagaLivre": {
+            "properties": {
+                "unidade": {
+                    "type": "object",
+                    "$ref": "#/definitions/Unidade"
+                },
+                "vagaLivre": {
+                    "type": "object",
+                    "$ref": "#/definitions/VagaLivre"
+                }
+            }
+        }
+    }
+}
